@@ -172,6 +172,9 @@
 
 <select id="kraj" name="kraj">
     <option value="" disabled selected>Select a country</option>
+    <option value="Poland" data-perdiem="45" data-hotel-limit="67.5" data-currency="PLN">
+        Poland - Per Diem: 45, Hotel - Ryczalt: 67.50, Currency: PLN
+    </option>
     <option value="Chile" data-perdiem="60" data-hotel-limit="120" data-currency="USD">
         Chile - Per Diem: 60, Hotel Limit: 120, Currency: USD
     </option>
@@ -206,8 +209,6 @@
         USA - Washington - Per Diem: 59, Hotel Limit: 300, Currency: USD
     </option>
 </select>
-
-
 
 <!-- Tabela sniadanie-obiad-kolacja -->
 <label for="meals">Posiłki (Meals):</label>
@@ -298,7 +299,7 @@
                     <tr>
                         <td>        
                         <label for="cost-type-field">Diety hotelowe (Hotel rate)</label>
-                        <input type="text" name="cost-type[]" value="Diety hotelowe" readonly style="border: none; background-color: transparent;">
+                        <input type="text" name="cost-type[]" value="Diety hotelowe" style="border: none; background-color: transparent;">
                         </td>
                         <td><input type="text" name="source[]" placeholder="Zrodlo finansowania (source of funding)" value=""></td>
                         <td><input type="number" name="quantity[]" placeholder="Liczba (Number)" id="hotel-days-field" step="0.1"></td>
@@ -344,11 +345,11 @@
                     
                     <tr>
                         <td>
-                        <label for="cost-type-field">Inne (Other)</label>
-                        <input type="text" name="cost-type[]" value="Inne" style="border: none; background-color: transparent;">
+                        <label for="cost-type-field">Kilometrowka (Car travel)</label>
+                        <input type="text" name="cost-type[]" value="Kilometrowka" style="border: none; background-color: transparent;">
                         </td>
                         <td><input type="text" name="source[]" placeholder="Zrodlo finansowania (Source of funding)" value=""></td>
-                        <td><input type="number" name="quantity[]" placeholder="Liczba (Number)" id="inne1-days-field" step="0.1"></td>
+                        <td><input type="number" name="quantity[]" placeholder="Liczba km (Number of km)" id="inne1-days-field" step="0.1"></td>
                         <td><input type="number" name="rate[]" placeholder="Stawka (Rate)" id="inne1-rate-field" step="0.1"></td>
                         <td><input type="number" name="amount[]" placeholder="Kwota (Sum)"  readonly id="inne1-kwota-field"></td>
                         <td><input type="text" name="currency[]" placeholder="Waluta (Currency)" id="inne1-currency-field"></td>
@@ -404,6 +405,9 @@
     </form>
 
     <script>
+    //kilometrowka
+    document.getElementById('inne1-rate-field').value = 1.15;
+
     document.getElementById('dojazdowa-days-field').value = 1;
     let originalPerDiem = 0;
     document.addEventListener('DOMContentLoaded', function() {
@@ -889,7 +893,7 @@ pdf.setFontSize(12);
 startY=startY+1
 //pdf.text(formData.get('wyjazd') || '', startX + 2, startY + 5);
 pdf.text(formData.get('wyjazd') || '', startX + (trasa_sizeX - pdf.getTextWidth(formData.get('wyjazd') || '')) / 2, startY + 5);
-pdf.text(formData.get('powrotz') || '', startX + (trasa_sizeX - pdf.getTextWidth(formData.get('powrtoz') || '')) / 2, startY + 20);
+pdf.text(formData.get('powrotZ') || '', startX + (trasa_sizeX - pdf.getTextWidth(formData.get('powrotZ') || '')) / 2, startY + 20);
 pdf.text(formData.get('przez1') || '', startX + (trasa_sizeX - pdf.getTextWidth(formData.get('przez1') || '')) / 2 + trasa_sizeX, startY + 5);
 pdf.text(formData.get('przez2') || '', startX + (trasa_sizeX - pdf.getTextWidth(formData.get('przez2') || '')) / 2 + trasa_sizeX, startY + 20);
 pdf.text(formData.get('przyjazd') || '', startX + (trasa_sizeX - pdf.getTextWidth(formData.get('przyjazd') || '')) / 2 + 2 * trasa_sizeX, startY + 5);
